@@ -216,7 +216,7 @@ int main(int argc, char const *argv[])
 
     // after deletion
     cout << "----------------------------------------------------------" << endl;
-    root = deleteFromBST(root, 27);
+    root = deleteFromBST(root, 3);
 
     cout << "traversed BST in Level order" << endl;
     levelOrderTraversal(root);
