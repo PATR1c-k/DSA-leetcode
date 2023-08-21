@@ -26,7 +26,7 @@ public:
 
             if (arr[parent] < arr[index])
             {
-                swap(arr[index], arr[parent]);
+                swap(arr[parent], arr[index]);
                 index = parent;
             }
             else
@@ -34,7 +34,7 @@ public:
                 return;
             }
         }
-    };
+    }
 
     void print()
     {
@@ -43,14 +43,13 @@ public:
             cout << arr[i] << " ";
         }
         cout << endl;
-    };
+    }
 
-    void deleteNodefromheap()
+    void deleteFromHeap()
     {
-        // base case
         if (size == 0)
         {
-            cout << "Nothing to delete" << endl;
+            cout << "Nothing to delete from heap" << endl;
             return;
         }
 
@@ -61,8 +60,8 @@ public:
         int i = 1;
         while (i < size)
         {
-            int leftIndex = 2 * i;
-            int rightIndex = 2 * i + 1;
+            int leftIndex = i * 2;
+            int rightIndex = i * 2 + 1;
 
             if (leftIndex < size && arr[i] < arr[leftIndex])
             {
@@ -78,25 +77,19 @@ public:
             {
                 return;
             }
-        }
+        };
     }
 };
 
 int main(int argc, char const *argv[])
 {
+
     heap h1;
-
     h1.insert(50);
-    h1.insert(51);
+    h1.insert(55);
     h1.insert(53);
+    h1.insert(52);
     h1.insert(54);
-    h1.insert(56);
-    h1.print();
-
-    h1.deleteNodefromheap();
-    h1.print();
-
-    h1.deleteNodefromheap();
     h1.print();
 
     return 0;
