@@ -1,56 +1,107 @@
 #include <iostream>
 using namespace std;
 
-void heapify(int arr[], int n, int i)
+// 1 -> 2 -> 3 -> 4 -> 5 -> NULL
+
+// Linked List
+class Node
 {
-    int largest = i;
-    int left = 2 * i + 1;
-    int right = 2 * i + 2;
+public:
+    int data;
+    Node *next;
 
-    if (left < n && arr[left] > arr[largest])
+    Node(int data)
     {
-        largest = left;
+        this->data = data;
+        this->next = NULL;
+    };
+};
+
+void insertAtTail(Node *&tail, int data)
+{
+    Node *temp = new Node(data);
+
+    tail->next = temp;
+    temp->next = NULL;
+    tail = temp;
+}
+
+void insertAtFirst(Node *&head, int data)
+{
+    Node *temp = new Node(data);
+
+    temp->next = head;
+    head = temp;
+};
+
+void insertAtPosition(Node *head, int position, int data)
+{
+    // for first position insert
+    if (position == 1)
+    {
+        insertAtFirst(head, data);
+        return;
     }
 
-    if (right < n && arr[right] > arr[largest])
+    // traversing upto -1th position
+    Node *temp = head;
+    int count = 1;
+    while (count < position - 1)
     {
-        largest = right;
+        temp = temp->next;
+        count++;
     }
 
-    if (largest != i)
+    Node *fresh = new Node(data);
+    fresh->next = temp->next;
+    temp->next = fresh;
+}
+
+void print(Node *head)
+{
+    Node *temp = head;
+
+    while (temp != NULL)
     {
-        swap(arr[i], arr[largest]);
-        heapify(arr, n, largest);
+        cout << temp->data << " ";
+        temp = temp->next;
     }
 }
 
-void heapSort(int arr[], int n)
+Node *reverseLL(Node *head)
 {
-    // builded a heap
-    for (int i = (n / 2) - 1; i >= 0; i--)
-    {
-        heapify(arr, n, i);
-    }
+    Node *curr = head;
+    Node *prev = NULL;
+    Node *next = NULL;
 
-    for (int i = n - 1; i > 0; i--)
+    while (curr != NULL)
     {
-        swap(arr[0], arr[i]);
-        heapify(arr, i, 0);
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
     }
+    return prev;
 }
 
 int main(int argc, char const *argv[])
 {
-    int arr[] = {43, 56, 63, 65, 24, 3};
+    Node *head = NULL;
+    Node *tail = NULL;
 
-    int n = sizeof(arr) / sizeof(int);
-    heapSort(arr, n);
+    insertAtFirst(head, 20);
 
-    for (int i = 0; i < n; i++)
-    {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
+    insertAtPosition(head, 2, 30);
+    insertAtPosition(head, 3, 40);
+    insertAtPosition(head, 4, 50);
 
+    // printing whole LL
+    print(head);
+
+    cout << "\n";
+
+    // reversing whole LL
+    Node *reversedLL = reverseLL(head);
+    print(reversedLL);
     return 0;
 }

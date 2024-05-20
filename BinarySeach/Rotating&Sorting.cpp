@@ -63,3 +63,47 @@ int main(int argc, char const *argv[])
 
     return 0;
 }
+
+// method 2nd
+// int search(int *arr, int n, int key)
+// {
+//     int left = 0;
+//     int right = n - 1;
+
+//     while (left <= right)
+//     {
+//         int mid = (left + right) / 2;
+
+//         if (arr[mid] == key)
+//         {
+//             return mid;
+//         }
+
+//         // left
+//         if (arr[left] <= arr[mid])
+//         {
+//             if (arr[left] <= key && key <= arr[mid])
+//             {
+//                 right = mid - 1;
+//             }
+//             else
+//             {
+//                 left = mid + 1;
+//             }
+//         }
+
+//         // right
+//         else
+//         {
+//             if (arr[mid] <= key && key <= arr[right])
+//             {
+//                 left = mid + 1;
+//             }
+//             else
+//             {
+//                 right = mid - 1;
+//             }
+//         }
+//     }
+//     return -1;
+// }
