@@ -20,7 +20,7 @@ int main(int argc, char const *argv[])
     cout << endl;
 
     cout << "Finding 3->" << m.count(3) << endl;
-    cout << "Finding 6->" << m.count(5) << endl;
+    cout << "Finding 6->" << m.count(5) << endl; 
 
     m.erase(3);
     cout << "After Erase" << endl;
