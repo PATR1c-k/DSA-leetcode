@@ -1,107 +1,107 @@
 #include <iostream>
 using namespace std;
 
-// 1 -> 2 -> 3 -> 4 -> 5 -> NULL
-
-// Linked List
-class Node
+bool isPresent(int arr[][3], int target)
 {
-public:
-    int data;
-    Node *next;
 
-    Node(int data)
+    // int row = sizeof(arr) / sizeof(column);
+
+    for (int i = 0; i < 4; i++)
     {
-        this->data = data;
-        this->next = NULL;
-    };
-};
-
-void insertAtTail(Node *&tail, int data)
-{
-    Node *temp = new Node(data);
-
-    tail->next = temp;
-    temp->next = NULL;
-    tail = temp;
+        for (int j = 0; j < 3; j++)
+        {
+            if (arr[i][j] == target)
+            {
+                return 1;
+            }
+        }
+    }
+    return 0;
 }
 
-void insertAtFirst(Node *&head, int data)
+void row_wise_sum(int arr[][3])
 {
-    Node *temp = new Node(data);
-
-    temp->next = head;
-    head = temp;
-};
-
-void insertAtPosition(Node *head, int position, int data)
-{
-    // for first position insert
-    if (position == 1)
+    int sum = 0;
+    for (int i = 0; i < 4; i++)
     {
-        insertAtFirst(head, data);
-        return;
-    }
-
-    // traversing upto -1th position
-    Node *temp = head;
-    int count = 1;
-    while (count < position - 1)
-    {
-        temp = temp->next;
-        count++;
-    }
-
-    Node *fresh = new Node(data);
-    fresh->next = temp->next;
-    temp->next = fresh;
-}
-
-void print(Node *head)
-{
-    Node *temp = head;
-
-    while (temp != NULL)
-    {
-        cout << temp->data << " ";
-        temp = temp->next;
+        for (int j = 0; j < 3; j++)
+        {
+            sum += arr[i][j];
+        }
+        cout << "Row " << i << " sum to -> " << sum << endl;
+        sum = 0;
     }
 }
 
-Node *reverseLL(Node *head)
+int max_sum_row(int arr[][3])
 {
-    Node *curr = head;
-    Node *prev = NULL;
-    Node *next = NULL;
-
-    while (curr != NULL)
+    int rowIndex = -1;
+    int maxSum = 0;
+    for (int i = 0; i < 4; i++)
     {
-        next = curr->next;
-        curr->next = prev;
-        prev = curr;
-        curr = next;
+        int sum = 0;
+        for (int j = 0; j < 3; j++)
+        {
+            sum += arr[i][j];
+        }
+        if (sum > maxSum)
+        {
+            maxSum = sum;
+            rowIndex = i;
+        }
     }
-    return prev;
+    return rowIndex;
 }
 
 int main(int argc, char const *argv[])
 {
-    Node *head = NULL;
-    Node *tail = NULL;
+    // creating array
+    int arr[4][3] = {1, 2, 4, 6, 7, 8, 10, 11, 12, 4, 5, 8};
 
-    insertAtFirst(head, 20);
+    cout << "Enter Numbers as per filling row first sequence" << endl;
 
-    insertAtPosition(head, 2, 30);
-    insertAtPosition(head, 3, 40);
-    insertAtPosition(head, 4, 50);
+    // // taking inout
+    // for (int i = 0; i < 3; i++)
+    // {
+    //     for (int j = 0; j < 4; j++)
+    //     {
+    //         cin >> arr[i][j];
+    //     }
+    //     cout << endl;
+    // }
 
-    // printing whole LL
-    print(head);
+    cout << "Output of whole matrix" << endl;
 
-    cout << "\n";
+    // output of whole matrix
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
 
-    // reversing whole LL
-    Node *reversedLL = reverseLL(head);
-    print(reversedLL);
+    // int target;
+
+    // cout << "Enter number to check:" << endl;
+    // cin >> target;
+
+    // if (isPresent(arr, target))
+    // {
+    //     cout << "Present" << endl;
+    // }
+    // else
+    // {
+    //     cout << "Absent" << endl;
+    // }
+
+    cout << sizeof(arr) / sizeof(int) << endl;
+
+    // cout << sizeof(arr);
+
+    row_wise_sum(arr);
+    cout << "Maximum sum is of row -> " << max_sum_row(arr) << endl;
+
     return 0;
 }

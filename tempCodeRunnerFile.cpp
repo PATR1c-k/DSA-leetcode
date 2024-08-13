@@ -1,4 +1,9 @@
-
-    // int i = 3;
-    // cout << arr[i] << endl;
-    // cout << i[arr] << endl;
+   // // taking inout
+    // for (int i = 0; i < 3; i++)
+    // {
+    //     for (int j = 0; j < 4; j++)
+    //     {
+    //         cin >> arr[i][j];
+    //     }
+    //     cout << endl;
+    // }

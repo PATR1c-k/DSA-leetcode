@@ -33,4 +33,53 @@ public:
         }
         return 0;
     }
+
+    vector<long> spiralPathMatrix(vector<long> matrix, long n, long m)
+    {
+        vector<long> ans;
+        int row = n;
+        int col = m;
+
+        int count = 0;
+        int total = n * m;
+
+        // index initialization
+        int startingRow = 0;
+        int startingCol = 0;
+        int endingRow = n - 1;
+        int endingCol = m - 1;
+
+        while (count <= total)
+        {
+            // pritning starting row
+            for (int Index = startingCol; Index < endingCol; Index++)
+            {
+                ans.push_back(matrix[startingRow][Index]);
+            }
+            startingRow++;
+
+            // printing ending col
+            for (int Index = 0; Index < endingRow; Index++)
+            {
+                ans.push_back(matrix[endingRow][Index]);
+            }
+            endingCol--;
+
+            // printing ending row reverse
+            for (int Index = endingCol; Index >= startingCol; Index--)
+            {
+                ans.push_back(matrix[endingRow][Index]);
+            }
+            endingRow--;
+
+            // printing starting col in reverse
+            for (int Index = endingRow; Index <= startingRow; Index++)
+            {
+                ans.push_back(matrix[Index][startingCol]);
+            }
+            startingCol++;
+        }
+
+        return ans;
+    }
 };
