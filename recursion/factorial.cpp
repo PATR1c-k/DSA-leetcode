@@ -1,26 +1,37 @@
+#include <bits/stdc++.h>
 #include <iostream>
+
 using namespace std;
 
-#define PI 3.14
+// Write your countBits function here
 
-int factorial(int a)
+vector<int> countBits(int n)
 {
-    if (a == 0)
+    vector<int> arr;
+    int ans = 0;
+    int i = 0;
+
+    while (n != 0)
     {
-        return 1;
+        int bit = n & 1;
+        ans = (n * pow(10, i)) + ans;
+        arr.push_back(ans);
+        n = n >> 1;
+        i++;
     }
 
-    cout << a << endl;
-
-    return a * factorial(a - 1);
+    return arr;
 }
 
-int main(int argc, char const *argv[])
+int main()
 {
+    int n;
+    cin >> n;
+    vector<int> ans = countBits(n);
+    for (int i = 0; i < ans.size(); i++)
+    {
+        cout << ans[i] << " ";
+    }
 
-    int i;
-    cout << "Enter a number to find its factorial:";
-    cin >> i;
-    cout << factorial(i) << endl;
     return 0;
 }

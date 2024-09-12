@@ -52,32 +52,36 @@ public:
         while (count <= total)
         {
             // pritning starting row
-            for (int Index = startingCol; Index < endingCol; Index++)
+            for (int Index = startingCol; count < total && Index < endingCol; Index++)
             {
                 ans.push_back(matrix[startingRow][Index]);
             }
             startingRow++;
+            count++;
 
             // printing ending col
-            for (int Index = 0; Index < endingRow; Index++)
+            for (int Index = 0; count < total && Index < endingRow; Index++)
             {
                 ans.push_back(matrix[endingRow][Index]);
             }
             endingCol--;
+            count++;
 
             // printing ending row reverse
-            for (int Index = endingCol; Index >= startingCol; Index--)
+            for (int Index = endingCol; count < total && Index >= startingCol; Index--)
             {
                 ans.push_back(matrix[endingRow][Index]);
             }
             endingRow--;
+            count++;
 
             // printing starting col in reverse
-            for (int Index = endingRow; Index <= startingRow; Index++)
+            for (int Index = endingRow; count < total && Index <= startingRow; Index++)
             {
                 ans.push_back(matrix[Index][startingCol]);
             }
             startingCol++;
+            count++;
         }
 
         return ans;

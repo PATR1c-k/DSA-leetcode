@@ -40,5 +40,39 @@ int main(int argc, char const *argv[])
     }
 
     delete[] arr;
+
+    // row and col are diffrent
+    // int row;
+    // cout << "Enter row size:";
+    // cin >> row;
+    // int **arr_2d = new int *[row];
+
+    // int col;
+    // cout << "Enter col size:";
+    // cin >> col;
+
+    // for (int i = 0; i < col; i++)
+    // {
+    //     arr_2d[i] = new int[col];
+    // }
+
+    // // creation
+    // for (int i = 0; i < row; i++)
+    // {
+    //     for (int j = 0; j < col; j++)
+    //     {
+    //         cin >> arr_2d[i][j];
+    //     }
+    // }
+
+    // cout << "Printitng" << endl;
+    // for (int i = 0; i < row; i++)
+    // {
+    //     for (int j = 0; j < col; j++)
+    //     {
+    //         cout << arr_2d[i][j] << " ";
+    //     }
+    //     cout << endl;
+    // }
     return 0;
 }
