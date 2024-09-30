@@ -1,27 +1,24 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
-int factorial(int x)
+int getDecimal(long long num)
 {
-    // base case
-    if (x == 0 || x == 1)
-    {
-        return 1;
-    }
+    int i = 0;
+    int decimal = 0;
 
-    if (x == 2)
+    while (num != 0)
     {
-        return 2;
+        int digit = num % 10;
+        decimal += digit * pow(2, i);
+        num /= 10;
+        i++;
     }
-
-    return factorial(x) * factorial(x - 1);
+    return decimal;
 }
 
-int main()
+int main(int argc, char const *argv[])
 {
-    // Write your code here
-    int input;
-    cin >> input;
-    cout << factorial(input) << endl;
+    long long binary = 11011;
+    cout << getDecimal(binary);
     return 0;
 }
